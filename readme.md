@@ -2,6 +2,19 @@
 
 ## Planning
 
+### Game Flow
+- Draw board
+- Player #'s turn
+  - Input marker
+  - Check if valid
+  - Change marker
+  - Check for win/draw
+  - Flip player turn boolean
+- ^Repeat until end game
+- Display result
+- Reset for new game
+
+
 ### Structure
 - class Game --- responsible for game sequence
     - track player's current turn
@@ -16,8 +29,12 @@
   - class Player --- responsible for input and validation
     - Player.prompt
 
+### Board object
+- 2D array
+- Ultimately containing Space objects
+- Space = Struct.new(:number, :owner)
+
 ### Victory check
 - Player 1's squares = 1
 - Player 2's squares = -1
 - Winning line sums to 3 or -3.
-- Only check lines affected by last turn?
