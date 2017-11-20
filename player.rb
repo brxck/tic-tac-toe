@@ -4,11 +4,11 @@ class Player
   def initialize(number, name=nil)
     @number = number
 
-    if name.nil?
-      @name = "Player #{@number}"
-    else 
-      @name = name
-    end
+    @name = if name.nil?
+              "Player #{@number}"
+            else
+              name
+            end
   end
 
   private
