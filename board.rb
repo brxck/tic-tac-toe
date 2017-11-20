@@ -1,21 +1,30 @@
 class Board
 
+  Space = Struct.new(:number, :owner)
+
   def initialize
     # @spaces[marker] = owner
-    @spaces = {}
-    (1..9).each do |i|
-      @spaces[i] = 0
+    @spaces = []
+    number = 1
+    3.times do
+      @spaces << Array.new(3) { |i| Space.new(number + i, 0) }
+      number += 3
     end
   end
 
   def draw
-    @spaces.each do |space|
-      if space[1] == 0
-        print " #{space[0]} "
-      else
-        print space[1] == 1 ? " X " : " O "
+    @spaces.each do |row|
+      row.each do |x|
+        case x.owner
+        when 0
+          print " #{x.number} "
+        when 1
+          print " X "
+        when -1 
+          print " O "
+        end
       end
-      print "\n" if space[0] % 3 == 0
+      puts
     end
   end
 
@@ -24,7 +33,8 @@ class Board
     @spaces[marker] = player == 1? 1 : -1
   end
 
-  private
+  def victory_check
+  end
 
 end
-    
+
