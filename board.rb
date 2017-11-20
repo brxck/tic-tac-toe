@@ -32,7 +32,6 @@ class Board
     return 1 unless (1..9).include?(marker) # Validate marker
     row = (marker / 3.1).floor
     column = marker % 3 - 1
-    
     return 2 if @spaces[row][column].owner != 0
     @spaces[row][column].owner = player
   end
@@ -40,19 +39,27 @@ class Board
   def check_straights(direction)
     (0..2).each do |axis|
       line = 0
-      if direction == "column"
+      if direction == :column
         (0..2).each { |x| line += @spaces[x][axis].owner }
-      elsif direction == "row"
+      elsif direction == :row
         (0..2).each { |x| line += @spaces[axis][x].owner }
       end
-      return line == 3 || line == -3 ? line : 0
+      return [3, -3].include?(line) ? line : 0
+    end
   end
 
   def check_diagonals
+    # left-to-right
+    line = 0
+    (0..2).each do |x|
+      line += @spaces[x][x].owner
+    end
+    # right-to-left
+    return line if [3, -3].include?(line)
+    line = 0
+    2.downto(0).each_with_index do |column, row|
+      line += @spaces[row][column].owner
+    end
+    [3, -3].include?(line) ? line : 0
   end
-
-  def victory_check
-
-  end
-  
 end
