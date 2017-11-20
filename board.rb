@@ -30,12 +30,29 @@ class Board
 
   def mark_space(marker, player)
     return 1 unless (1..9).include?(marker) # Validate marker
-    row = (marker / 3).floor
+    row = (marker / 3.1).floor
     column = marker % 3 - 1
     
     return 2 if @spaces[row][column].owner != 0
     @spaces[row][column].owner = player
   end
 
-  def victory_check; end
+  def check_straights(direction)
+    (0..2).each do |axis|
+      line = 0
+      if direction == "column"
+        (0..2).each { |x| line += @spaces[x][axis].owner }
+      elsif direction == "row"
+        (0..2).each { |x| line += @spaces[axis][x].owner }
+      end
+      return line == 3 || line == -3 ? line : 0
+  end
+
+  def check_diagonals
+  end
+
+  def victory_check
+
+  end
+  
 end
