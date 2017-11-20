@@ -1,5 +1,5 @@
-class Board
 
+class Board
   Space = Struct.new(:number, :owner)
 
   def initialize
@@ -19,9 +19,9 @@ class Board
         when 0
           print " #{x.number} "
         when 1
-          print " X "
-        when -1 
-          print " O "
+          print ' X '
+        when -1
+          print ' O '
         end
       end
       puts
@@ -29,12 +29,13 @@ class Board
   end
 
   def mark_space(marker, player)
-    return 1 if !(1..9).include(marker)
-    @spaces[marker] = player == 1? 1 : -1
+    return 1 unless (1..9).include?(marker) # Validate marker
+    row = (marker / 3).floor
+    column = marker % 3 - 1
+    
+    return 2 if @spaces[row][column].owner != 0
+    @spaces[row][column].owner = player
   end
 
-  def victory_check
-  end
-
+  def victory_check; end
 end
-
