@@ -5,6 +5,7 @@ class Board
   def initialize
     # @spaces[marker] = owner
     @spaces = []
+    @draw_counter = 0
     number = 1
     3.times do
       @spaces << Array.new(3) { |i| Space.new(number + i, 0) }
@@ -29,11 +30,13 @@ class Board
   end
 
   def mark_space(marker, player)
-    return 1 unless (1..9).include?(marker) # Validate marker
+    return 1 unless (1..9).cover?(marker) # Validate marker
     row = (marker / 3.1).floor
     column = marker % 3 - 1
     return 2 if @spaces[row][column].owner != 0
     @spaces[row][column].owner = player
+    @draw_counter += 1
+    return 0
   end
 
   def check_straights(direction)
@@ -62,4 +65,17 @@ class Board
     end
     [3, -3].include?(line) ? line : 0
   end
+
+  def endgame_check
+    if [3, -3].include?(check_straights(:columns)) ||
+       [3, -3].include?(check_straights(:rows)) ||
+       [3, -3].include?(check_diagonals)
+      1
+    elsif @draw_counter == 9
+      -1
+    else
+      0
+    end
+  end
+
 end
