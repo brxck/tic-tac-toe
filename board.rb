@@ -1,4 +1,3 @@
-
 class Board
   Space = Struct.new(:number, :owner)
 
@@ -14,15 +13,16 @@ class Board
   end
 
   def draw
+    require 'rainbow'
     @spaces.each do |row|
       row.each do |x|
         case x.owner
         when 0
-          print " #{x.number} "
+          print Rainbow(" #{x.number} ").silver
         when 1
-          print ' X '
+          print Rainbow(' X ').red
         when -1
-          print ' O '
+          print Rainbow(' O ').blue
         end
       end
       puts
@@ -67,8 +67,8 @@ class Board
   end
 
   def endgame_check
-    if [3, -3].include?(check_straights(:columns)) ||
-       [3, -3].include?(check_straights(:rows)) ||
+    if [3, -3].include?(check_straights(:column)) ||
+       [3, -3].include?(check_straights(:row)) ||
        [3, -3].include?(check_diagonals)
       1
     elsif @draw_counter == 9
