@@ -13,19 +13,19 @@ class Board
   end
 
   def draw
-    require 'rainbow'
+    print "\n"
     @spaces.each do |row|
       row.each do |x|
         case x.owner
         when 0
-          print Rainbow(" #{x.number} ").silver
+          print Rainbow("  #{x.number}  ").silver
         when 1
-          print Rainbow(' X ').red
+          print Rainbow('  X  ').red
         when -1
-          print Rainbow(' O ').blue
+          print Rainbow('  O  ').blue
         end
       end
-      puts
+      print "\n\n"
     end
   end
 
