@@ -5,6 +5,7 @@ This is a project for [The Odin Project: OOP.](https://www.theodinproject.com/co
 Command line implementation of tic-tac-toe in Ruby.
 
 ```
+>$ ruby main.rb
 
   1    2    3  
 
