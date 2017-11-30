@@ -47,7 +47,7 @@ class Board
       elsif direction == :row
         (0..2).each { |x| line += @spaces[axis][x].owner }
       end
-      return [3, -3].include?(line) ? line : 0
+      return line if [3, -3].include?(line)
     end
   end
 
@@ -63,7 +63,7 @@ class Board
     2.downto(0).each_with_index do |column, row|
       line += @spaces[row][column].owner
     end
-    [3, -3].include?(line) ? line : 0
+    return line if [3, -3].include?(line)
   end
 
   def endgame_check
@@ -77,5 +77,4 @@ class Board
       0
     end
   end
-
 end

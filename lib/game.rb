@@ -68,5 +68,3 @@ class Game
     puts Rainbow("#{@player1.name}: #{@player1.score} | #{@player2.name}: #{@player2.score}").cyan
   end
 end
-
-game = Game.new
