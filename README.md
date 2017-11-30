@@ -1,5 +1,33 @@
 # tic-tac-toe
 
+This is a project for [The Odin Project: OOP.](https://www.theodinproject.com/courses/ruby-programming/lessons/oop)
+
+Command line implementation of tic-tac-toe in Ruby.
+
+```
+>$ ruby main.rb
+
+  1    2    3  
+
+  4    5    6  
+
+  7    8    9  
+
+Player 1, pick a square: 1
+
+      ...
+
+  X    2    O  
+
+  O    X    6  
+
+  7    8    X  
+
+Player 2 wins!
+
+Player 1: 0 | Player 2: 1
+```
+
 ## Planning
 
 ### Game Flow
